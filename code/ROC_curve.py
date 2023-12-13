@@ -27,13 +27,15 @@ else:
 train_data = pd.read_csv(sys.argv[1])
 test_data = pd.read_csv(sys.argv[2])
 
-svc_C = para_convert(sys.argv[3])
-svc_gamma = para_convert(sys.argv[4])
-max_depth = int(sys.argv[5])
-rf_n_estimators = int(sys.argv[6])
-xg_n_estimators = int(sys.argv[7])
-xg_subsample = float(sys.argv[8])
-xg_gamma = float(sys.argv[9])
+feature_selection_name = sys.argv[3]
+
+svc_C = para_convert(sys.argv[4])
+svc_gamma = para_convert(sys.argv[5])
+max_depth = int(sys.argv[6])
+rf_n_estimators = int(sys.argv[7])
+xg_n_estimators = int(sys.argv[8])
+xg_subsample = float(sys.argv[9])
+xg_gamma = float(sys.argv[10])
 
 train_data_val = train_data.values
 test_data_val = test_data.values
@@ -50,10 +52,10 @@ test_X_minmax = min_max_scaler.transform(test_X)
 
 # 5-fold roc curve
 classifiers = {
-    "ElasticNet+SVM": SVC(C = svc_C, gamma = svc_gamma, probability=True, random_state = 123),
-    "ElasticNet+DT": DecisionTreeClassifier(max_depth = max_depth, random_state = 123),
-    "ElasticNet+RF": RandomForestClassifier(n_estimators = rf_n_estimators, random_state = 123),
-    "ElasticNet+XGBoost": xgb.XGBClassifier(learning_rate = 0.01, n_estimators = xg_n_estimators, subsample = xg_subsample, gamma = xg_gamma, random_state = 123)
+    feature_selection_name+"+SVM": SVC(C = svc_C, gamma = svc_gamma, probability=True, random_state = 123),
+    feature_selection_name+"+DT": DecisionTreeClassifier(max_depth = max_depth, random_state = 123),
+    feature_selection_name+"+RF": RandomForestClassifier(n_estimators = rf_n_estimators, random_state = 123),
+    feature_selection_name+"+XGBoost": xgb.XGBClassifier(learning_rate = 0.01, n_estimators = xg_n_estimators, subsample = xg_subsample, gamma = xg_gamma, random_state = 123)
 }
 
 skf = StratifiedKFold(n_splits = 5, random_state = 123, shuffle = True)
@@ -61,10 +63,10 @@ skf = StratifiedKFold(n_splits = 5, random_state = 123, shuffle = True)
 roc_data = {}
 
 colors = {
-    "ElasticNet+SVM": '#fbd279',
-    "ElasticNet+DT": '#6ad6ac',
-    "ElasticNet+RF": '#ef9a76',
-    "ElasticNet+XGBoost": '#7a89aa'
+    feature_selection_name+"+SVM": '#fbd279',
+    feature_selection_name+"+DT": '#6ad6ac',
+    feature_selection_name+"+RF": '#ef9a76',
+    feature_selection_name+"+XGBoost": '#7a89aa'
 }
 
 plt.figure(figsize=(6, 5))
@@ -111,7 +113,7 @@ plt.ylim([0.0, 1.05])
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
 plt.legend(loc="lower right")
-plt.savefig(sys.argv[10], format='pdf', dpi=1200)
+plt.savefig(sys.argv[11], format='pdf', dpi=1200)
 
 for name, (_, _, auc_val) in roc_data.items():
     print(f"{name}: AUC = {auc_val:.3f}")
@@ -121,17 +123,17 @@ plt.show()
 
 # independent test roc curve
 classifiers = {
-    "ElasticNet+SVM": SVC(C = svc_C, gamma = svc_gamma, probability=True, random_state = 123),
-    "ElasticNet+DT": DecisionTreeClassifier(max_depth = max_depth, random_state = 123),
-    "ElasticNet+RF": RandomForestClassifier(n_estimators = rf_n_estimators, random_state = 123),
-    "ElasticNet+XGBoost": xgb.XGBClassifier(learning_rate = 0.01, n_estimators = xg_n_estimators, subsample = xg_subsample, gamma = xg_gamma, random_state = 123)
+    feature_selection_name+"+SVM": SVC(C = svc_C, gamma = svc_gamma, probability=True, random_state = 123),
+    feature_selection_name+"+DT": DecisionTreeClassifier(max_depth = max_depth, random_state = 123),
+    feature_selection_name+"+RF": RandomForestClassifier(n_estimators = rf_n_estimators, random_state = 123),
+    feature_selection_name+"+XGBoost": xgb.XGBClassifier(learning_rate = 0.01, n_estimators = xg_n_estimators, subsample = xg_subsample, gamma = xg_gamma, random_state = 123)
 }
 
 colors = {
-    "ElasticNet+SVM": '#fbd279',
-    "ElasticNet+DT": '#6ad6ac',
-    "ElasticNet+RF": '#ef9a76',
-    "ElasticNet+XGBoost": '#7a89aa'
+    feature_selection_name+"+SVM": '#fbd279',
+    feature_selection_name+"+DT": '#6ad6ac',
+    feature_selection_name+"+RF": '#ef9a76',
+    feature_selection_name+"+XGBoost": '#7a89aa'
 }
 
 plt.figure(figsize=(6, 5))
@@ -158,6 +160,6 @@ plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
 plt.legend(loc="lower right")
 
-plt.savefig(sys.argv[11], format='pdf', dpi=1200)
+plt.savefig(sys.argv[12], format='pdf', dpi=1200)
 
 plt.show()
