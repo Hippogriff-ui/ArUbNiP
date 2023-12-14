@@ -1,5 +1,5 @@
 # UbNiRF
-Prediction of protein ubiquitination sites in *Arabidopsis thaliana* and *Homo sapiens*
+Prediction of protein ubiquitination sites in *Arabidopsis thaliana* and *Homo sapiens*.
 
 ## UbNiRF uses the following programming languages and versions:
 * python 3.10
