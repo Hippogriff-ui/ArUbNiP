@@ -13,7 +13,7 @@ The dataset folder contains ubiquitination site datasets for *Arabidopsis thalia
 The code folder is the code implementation in the article.  
 The "AA531properties.xlsx" file contains 531 physical and chemical properties of amino acids.
 
-feature extraction:
+feature extraction:  
    BE.py is the implementation of BE.  
    CKSAAP.py is the implementation of CKSAAP.  
    EAAC.py is the implementation of EAAC.  
@@ -21,12 +21,12 @@ feature extraction:
    AA531.py is the implementation of AA531.  
    "PSSM" folder is the implementation of PSSM.
    
-feature selection:
+feature selection:  
    Elastic_net.py represents the Elastic net.  
    MRMR.py represents the mRMR.  
    Null_importances.py represents the Null importances.
   
-classifiers:
+classifiers:  
    DT_Kfold_para.py and DT_Kfold_Test.py are the implementation of DT.  
    RF_Kfold_para.py and RF_Kfold_Test.py are the implementation of RF.  
    XGBoost_Kfold_para.py and XGBoost_Kfold_Test.py are the implementation of XGBoost.  
