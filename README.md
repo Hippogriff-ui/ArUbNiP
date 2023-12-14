@@ -1,13 +1,13 @@
 # UbNiRF
 Prediction of protein ubiquitination sites in *Arabidopsis thaliana* and *Homo sapiens*
 
-##UbNiRF uses the following programming languages and versions:
+## UbNiRF uses the following programming languages and versions:
 * python 3.10
 * python 3.6
 * MATLAB 2016a
 
 
-##Guiding principles:
+## Guiding principles:
 
 **The dataset folder contains ubiquitination site datasets for *Arabidopsis thaliana* and *Homo sapiens*.  
 **The code folder is the code implementation in the article.  
