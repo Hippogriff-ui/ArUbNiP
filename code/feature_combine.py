@@ -5,7 +5,7 @@ from tqdm import tqdm
 import os
 import sys
 
-input_dir = sys.argv[1]
+input_dir = sys.argv[1] # The training set and the test set need to combine features separately
 
 pos_num = int(sys.argv[2])
 neg_num = int(sys.argv[3])
