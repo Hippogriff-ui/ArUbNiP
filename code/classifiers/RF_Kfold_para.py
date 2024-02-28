@@ -49,7 +49,7 @@ def rf_kfold(X, y,  k_fold_cv):
     
 def rf_kfold_without_smote(X, y,  k_fold_cv):
 
-    skf = StratifiedKFold(n_splits = k_fold_cv, random_state = 123, shuffle = True)
+    kf = KFold(n_splits = k_fold_cv, random_state = 123, shuffle = True)
 
     acc_dict = {}
 
@@ -61,7 +61,7 @@ def rf_kfold_without_smote(X, y,  k_fold_cv):
         y_test_array = np.array([])
         y_pred_array = np.array([])
 
-        for train_index, test_index in skf.split(X, y):
+        for train_index, test_index in kf.split(X, y):
             X_train, X_test = X[train_index], X[test_index]
             y_train, y_test = y[train_index], y[test_index]
 
