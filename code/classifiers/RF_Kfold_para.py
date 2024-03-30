@@ -7,6 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from imblearn.over_sampling import SMOTE
 from tqdm import tqdm
 import sys
+import time
 
 def smote(X,y):
     smote = SMOTE(random_state = 123)
@@ -78,7 +79,8 @@ def rf_kfold_without_smote(X, y,  k_fold_cv):
     max_value = acc_dict[max_key]
         
     return {max_key: max_value}
-    
+
+start = time.time()
 data = pd.read_csv(sys.argv[1])
 data_val = data.values
 X = data_val[:,1:]
@@ -86,3 +88,6 @@ y = data_val[:,0]
 
 best_para = rf_kfold(X, y, 5)
 print(best_para)
+
+end = time.time()
+print('Running time: %s Seconds'%(end-start))
