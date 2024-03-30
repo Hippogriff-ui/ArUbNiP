@@ -10,6 +10,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import roc_auc_score
 from imblearn.over_sampling import SMOTE
 import sys
+import time
 
 def smote(X,y):
     smote = SMOTE(random_state= 123)
@@ -182,7 +183,8 @@ def rf_independent_test(X_train, y_train, X_test, y_test, output_path, is_sample
         result_df = pd.DataFrame(result_dict, index=[0])
         save_result = pd.concat([original_data, result_df], axis=0)
         save_result.to_excel(output_path, index=False)
-        
+
+start = time.time()
 train_data = pd.read_csv(sys.argv[1])
 test_data = pd.read_csv(sys.argv[2])
 train_data = train_data.values
@@ -201,3 +203,6 @@ method_name = sys.argv[5]
 rf_kfold(train_X, train_y, "kfold_result.xlsx", 5, is_sample_aug, n_estimators, method_name)
 
 rf_independent_test(train_X, train_y, test_X, test_y, "independent_test_result.xlsx", is_sample_aug, n_estimators, method_name)
+
+end = time.time()
+print('Running time: %s Seconds'%(end-start))
