@@ -3,7 +3,9 @@ import numpy as np
 from tqdm import tqdm
 from sklearn.ensemble import RandomForestClassifier
 import sys
+import time
 
+start = time.time()
 data = pd.read_csv(sys.argv[1])
 feature_df = data.iloc[:,1:]
 var = np.var(feature_df,axis=0)
@@ -73,3 +75,6 @@ features_score_sorted = filtered_df['feature'].tolist()
 features_score_sorted.insert(0,'label')
 train_feat = data[features_score_sorted]
 train_feat.to_csv(sys.argv[4], index=False)
+
+end = time.time()
+print('Running time: %s Seconds'%(end-start))
