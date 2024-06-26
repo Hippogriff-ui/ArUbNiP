@@ -2,7 +2,7 @@ function feat=pssm2feat(pssm_matrix,ifpsepssm,step,ll,mp,rl)
 % for the sequence with inequal length use 'ifpse_pssm=1'
 % ll: length of left 
 % rl: length of right
-% mp: middle positon of 'S' or 'T'
+% mp: middle positon of 'K'
 if nargin<4
     ll=(length(pssm_matrix{1}(:,1))-1)/2;
     rl=ll;
