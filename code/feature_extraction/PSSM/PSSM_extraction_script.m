@@ -1,25 +1,25 @@
-% Ö¸¶¨Òª±éÀúµÄÎÄ¼ş¼ĞÂ·¾¶
-folder = 'C:\Users\Li Xiaokang\Desktop\win31_mulspecies\';
+% æŒ‡å®šè¦éå†çš„æ–‡ä»¶å¤¹è·¯å¾„
+folder = 'D:\paper\ubiquitination\Arab\dataset\win31\';
 
-% »ñÈ¡ÎÄ¼ş¼ĞÖĞµÄËùÓĞÎÄ¼şºÍÎÄ¼ş¼ĞÁĞ±í
+% è·å–æ–‡ä»¶å¤¹ä¸­çš„æ‰€æœ‰æ–‡ä»¶å’Œæ–‡ä»¶å¤¹åˆ—è¡¨
 file_list = dir(folder);
 
-% ±éÀúÎÄ¼şÁĞ±í
+% éå†æ–‡ä»¶åˆ—è¡¨
 for i = 1:length(file_list)
-    % »ñÈ¡µ±Ç°ÎÄ¼şµÄÃû³Æ
+    % è·å–å½“å‰æ–‡ä»¶çš„åç§°
     filename = file_list(i).name;
     
-    % ÅÅ³ıÒş²ØÎÄ¼şºÍÎÄ¼ş¼Ğ
+    % æ’é™¤éšè—æ–‡ä»¶å’Œæ–‡ä»¶å¤¹
     if strcmp(filename(1), '.')
         continue;
     end
     
-    % ¼ì²éµ±Ç°ÎÄ¼şÊÇ·ñÎªÎÄ¼ş¼Ğ
+    % æ£€æŸ¥å½“å‰æ–‡ä»¶æ˜¯å¦ä¸ºæ–‡ä»¶å¤¹
     if file_list(i).isdir
-        % Èç¹ûÊÇÎÄ¼ş¼Ğ
+        % å¦‚æœæ˜¯æ–‡ä»¶å¤¹
         fprintf('error');
     else
-        % Èç¹ûÊÇÎÄ¼ş£¬¿ÉÒÔÔÚ´Ë´¦Ìí¼ÓÈÎºÎ´¦ÀíÎÄ¼şµÄ´úÂë
+        % å¦‚æœæ˜¯æ–‡ä»¶ï¼Œå¯ä»¥åœ¨æ­¤å¤„æ·»åŠ ä»»ä½•å¤„ç†æ–‡ä»¶çš„ä»£ç 
         file_path = strcat(folder, filename);
         data = importdata(file_path);
         seq = data;
